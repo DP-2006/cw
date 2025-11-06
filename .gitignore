@@ -1,0 +1,58 @@
+# from abc import ABC , abstractmethod
+# import csv
+# class DataProcessor(ABC):
+#     def __init__(self, filename):
+#         self.filename = filename
+#     @abstractmethod
+#     def process(self):
+#         pass
+#     def run(self):
+#         self.process()
+#     def setup(self):
+#         self.akbar = "hellow"
+#         print(f"setting up {self.akbar}")
+#     def teardown(self):
+#         self.akbar = None
+#         print(f"tear down {self.akbar}")
+#     def __enter__(self):
+#         self.setup()
+#         return self
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#         self.teardown()
+#         return True
+#
+# class CSVProcessor(DataProcessor):
+#     def process(self):
+#         print("processing csv file")
+# with CSVProcessor("patriot.csv") as patriot:
+#      patriot.run()
+#
+# class JSONProcessor(DataProcessor):
+#      def process(self):
+#          print("processing json file")
+# with JSONProcessor("patriot.json") as patriot:
+#     patriot.run()
+
+class UndoRedoManager:
+    def __init__(self):
+        self.undone = []
+        self.done = []
+    def do(self , value):
+        self.done.append(value)
+        print(f"Do: {value}")
+    def redo(self):
+        self.done.append(self.done[-1])
+        print(self.done)
+    def undo(self):
+        self.undone.append(self.done.pop(-1))
+        print(self.undone)
+    def __enter__(self):
+        return self
+    def __exit__(self, exc_type, exc_val, exc_tb):
+         pass
+
+with  UndoRedoManager() as mgr:
+    mgr.do("1")
+    mgr.do("2")
+    mgr.redo()
+    mgr.undo()
