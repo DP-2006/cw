@@ -1,37 +1,37 @@
-# from abc import ABC , abstractmethod
-# import csv
-# class DataProcessor(ABC):
-#     def __init__(self, filename):
-#         self.filename = filename
-#     @abstractmethod
-#     def process(self):
-#         pass
-#     def run(self):
-#         self.process()
-#     def setup(self):
-#         self.akbar = "hellow"
-#         print(f"setting up {self.akbar}")
-#     def teardown(self):
-#         self.akbar = None
-#         print(f"tear down {self.akbar}")
-#     def __enter__(self):
-#         self.setup()
-#         return self
-#     def __exit__(self, exc_type, exc_val, exc_tb):
-#         self.teardown()
-#         return True
-#
-# class CSVProcessor(DataProcessor):
-#     def process(self):
-#         print("processing csv file")
-# with CSVProcessor("patriot.csv") as patriot:
-#      patriot.run()
-#
-# class JSONProcessor(DataProcessor):
-#      def process(self):
-#          print("processing json file")
-# with JSONProcessor("patriot.json") as patriot:
-#     patriot.run()
+ from abc import ABC , abstractmethod
+ import csv
+ class DataProcessor(ABC):
+     def __init__(self, filename):
+         self.filename = filename
+     @abstractmethod
+     def process(self):
+         pass
+     def run(self):
+         self.process()
+     def setup(self):
+         self.akbar = "hellow"
+         print(f"setting up {self.akbar}")
+     def teardown(self):
+         self.akbar = None
+         print(f"tear down {self.akbar}")
+     def __enter__(self):
+         self.setup()
+         return self
+     def __exit__(self, exc_type, exc_val, exc_tb):
+         self.teardown()
+         return True
+
+ class CSVProcessor(DataProcessor):
+     def process(self):
+         print("processing csv file")
+ with CSVProcessor("patriot.csv") as patriot:
+      patriot.run()
+
+ class JSONProcessor(DataProcessor):
+      def process(self):
+          print("processing json file")
+ with JSONProcessor("patriot.json") as patriot:
+     patriot.run()
 
 class UndoRedoManager:
     def __init__(self):
